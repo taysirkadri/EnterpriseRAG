@@ -1,0 +1,1588 @@
+{
+  "variant": "fake",
+  "config": {
+    "provider": "fake",
+    "embed_model": "fake",
+    "chat_model": "extractive",
+    "rerank": true,
+    "reranker": "lexical",
+    "chunk_size": 800,
+    "dense_top_k": 20,
+    "sparse_top_k": 20,
+    "rerank_top_n": 5,
+    "retrieval_only": false
+  },
+  "summary": {
+    "cases": 17,
+    "hit@5": 0.9333,
+    "recall@5": 0.9333,
+    "precision@5": 0.3444,
+    "ndcg@5": 0.8057,
+    "mrr": 0.7556,
+    "latency_p50_ms": 21.9,
+    "latency_p95_ms": 29.5,
+    "cost_per_query_usd": 0.0,
+    "keyword_coverage": 0.4333,
+    "groundedness": 0.8294,
+    "refusal_rate": 0.5,
+    "stage_p50_ms": {
+      "embed": 0.7,
+      "search_dense": 4.2,
+      "search_sparse": 1.8,
+      "fuse": 0.3,
+      "rerank": 6.8,
+      "generate": 3.5
+    }
+  },
+  "cases": [
+    {
+      "id": "dry-run-threshold",
+      "question": "What suction pressure triggers a dry run fault and how fast does it act?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "alarms",
+        "networking",
+        "controller-overview",
+        "alarms",
+        "controller-overview"
+      ],
+      "retrieved_docs": [
+        "alarms",
+        "networking",
+        "controller-overview"
+      ],
+      "latency_ms": 29.54,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.7,
+          "tokens_in": 18,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 10.08,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 2.45,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.34,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 5.24,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 6.75,
+          "tokens_in": 804,
+          "tokens_out": 50,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "## Fault codes\n\n**F-101 Dry run.** Suction pressure stayed below the dry-run threshold, default\n0.4 bar, for longer than the dry-run delay, default 5 seconds. The controller\nstops all pumps immediately.",
+      "quality": {
+        "keyword_coverage": 1.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "stage-up-delay",
+      "question": "How long must the lead pump run near full speed before another pump stages in?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "maintenance",
+        "controller-overview",
+        "maintenance",
+        "controller-overview",
+        "alarms"
+      ],
+      "retrieved_docs": [
+        "maintenance",
+        "controller-overview",
+        "alarms"
+      ],
+      "latency_ms": 23.66,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.8,
+          "tokens_in": 19,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.8,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 6.31,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.28,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 8.29,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 0.02,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 0.6309297535714575,
+        "mrr": 0.5
+      },
+      "answer": "The context does not contain enough information to answer this question.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 0.25
+      }
+    },
+    {
+      "id": "hunting-cause",
+      "question": "What causes the hunting alarm and does it stop the station?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "alarms",
+        "alarms",
+        "controller-overview",
+        "controller-overview",
+        "maintenance"
+      ],
+      "retrieved_docs": [
+        "alarms",
+        "controller-overview",
+        "maintenance"
+      ],
+      "latency_ms": 28.3,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.65,
+          "tokens_in": 14,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 3.92,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 4.82,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.24,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 7.03,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.04,
+          "tokens_in": 708,
+          "tokens_out": 41,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.6666666666666666,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "This is a diagnostic alarm — it does not stop the station. It usually\nmeans the stage-up and stage-down delays are too close together for the\nstation's demand profile.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "sensor-band",
+      "question": "What milliamp range counts as a valid transmitter reading?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "networking",
+        "controller-overview",
+        "alarms",
+        "networking",
+        "maintenance"
+      ],
+      "retrieved_docs": [
+        "networking",
+        "controller-overview",
+        "alarms",
+        "maintenance"
+      ],
+      "latency_ms": 20.89,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 1.09,
+          "tokens_in": 14,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 7.91,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.98,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 11
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.24,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 11
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 7.64,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 0.02,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.5,
+        "ndcg@5": 0.6934264036172708,
+        "mrr": 0.5
+      },
+      "answer": "The context does not contain enough information to answer this question.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 0.125
+      }
+    },
+    {
+      "id": "firmware-file",
+      "question": "What must the firmware update file be called and how should the USB stick be formatted?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "maintenance",
+        "maintenance",
+        "alarms",
+        "maintenance",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "maintenance",
+        "alarms",
+        "networking"
+      ],
+      "latency_ms": 28.48,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 1.02,
+          "tokens_in": 21,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 7.17,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 3.65,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.27,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 5.18,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 7.57,
+          "tokens_in": 828,
+          "tokens_out": 51,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "The update file must be placed in the root of the stick and named `vx7.fw`. The controller verifies a checksum before writing; a failed checksum aborts the\nupdate and leaves the running firmware untouched.",
+      "quality": {
+        "keyword_coverage": 0.5,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "opcua-port",
+      "question": "Which port does the OPC UA server listen on and what does it need to be enabled?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "networking",
+        "networking",
+        "maintenance",
+        "alarms",
+        "maintenance"
+      ],
+      "retrieved_docs": [
+        "networking",
+        "maintenance",
+        "alarms"
+      ],
+      "latency_ms": 24.11,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.74,
+          "tokens_in": 20,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 5.53,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 2.66,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.27,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 5.08,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.75,
+          "tokens_in": 911,
+          "tokens_out": 64,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "## OPC UA\n\nAn OPC UA server is available on port 4840 when the integration licence is\ninstalled. It exposes the same data as the Modbus map, organised as an object\nper pump, plus historical access to the last 30 days of process values sampled\nat one minute.",
+      "quality": {
+        "keyword_coverage": 1.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "mqtt-commands",
+      "question": "Can the controller be commanded over MQTT?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "networking",
+        "maintenance",
+        "maintenance",
+        "alarms",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "networking",
+        "maintenance",
+        "alarms"
+      ],
+      "latency_ms": 21.23,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.59,
+          "tokens_in": 10,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.13,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.13,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.44,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 7.82,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.55,
+          "tokens_in": 794,
+          "tokens_out": 40,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "## MQTT\n\nThe controller can publish telemetry to an MQTT broker. Topics are built from a\nconfigurable station prefix, for example `plant/station-3/pump/2/speed`.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "config-restore",
+      "question": "Can a configuration backup be restored onto a different unit?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "maintenance",
+        "networking",
+        "networking",
+        "maintenance",
+        "controller-overview"
+      ],
+      "retrieved_docs": [
+        "maintenance",
+        "networking",
+        "controller-overview"
+      ],
+      "latency_ms": 20.54,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.9,
+          "tokens_in": 15,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 5.63,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.71,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 10
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.26,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 10
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 6.02,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 2.86,
+          "tokens_in": 680,
+          "tokens_out": 49,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "A backup taken on one Vertex-7 can be restored to another unit of the same\nhardware revision. Restoring across hardware revisions is rejected, because\nsensor scaling tables differ between revisions.",
+      "quality": {
+        "keyword_coverage": 1.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "seal-interval",
+      "question": "How often should mechanical seals be inspected?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "networking",
+        "alarms",
+        "maintenance",
+        "maintenance",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "networking",
+        "alarms",
+        "maintenance"
+      ],
+      "latency_ms": 22.3,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.93,
+          "tokens_in": 11,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.2,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.17,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 4
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.26,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 4
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 4.81,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 7.09,
+          "tokens_in": 795,
+          "tokens_out": 57,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 0.5,
+        "mrr": 0.3333333333333333
+      },
+      "answer": "Dry running destroys mechanical seals within\nseconds, which is why this fault bypasses the normal ramp-down. **F-204 Sensor fault.** A 4-20 mA transmitter reported a current outside the\nvalid band, below 3.6 mA or above 20.4 mA.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "overpressure-limit",
+      "question": "What is the default overpressure limit?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "alarms",
+        "networking",
+        "controller-overview",
+        "alarms",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "alarms",
+        "networking",
+        "controller-overview"
+      ],
+      "latency_ms": 21.0,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.62,
+          "tokens_in": 9,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.18,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 2.47,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.27,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 6.13,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.45,
+          "tokens_in": 840,
+          "tokens_out": 39,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "Default limit is 16 bar. **F-412 Drive communication lost.** The controller received no response from a\nvariable frequency drive for three consecutive polls.",
+      "quality": {
+        "keyword_coverage": 1.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "duty-rotation",
+      "question": "How does the controller decide which pump leads after a restart?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "maintenance",
+        "networking",
+        "alarms",
+        "alarms",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "maintenance",
+        "networking",
+        "alarms"
+      ],
+      "latency_ms": 16.32,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.67,
+          "tokens_in": 16,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 3.98,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.76,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.3,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 5.52,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 0.02,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 0.0,
+        "recall@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@5": 0.0,
+        "mrr": 0.0
+      },
+      "answer": "The context does not contain enough information to answer this question.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 0.25
+      }
+    },
+    {
+      "id": "modbus-port",
+      "question": "Which port does Modbus TCP use?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "maintenance",
+        "networking",
+        "networking",
+        "alarms",
+        "alarms"
+      ],
+      "retrieved_docs": [
+        "maintenance",
+        "networking",
+        "alarms"
+      ],
+      "latency_ms": 20.86,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.58,
+          "tokens_in": 7,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.17,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 0.99,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 8
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.26,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 8
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 6.83,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.69,
+          "tokens_in": 715,
+          "tokens_out": 47,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 0.6309297535714575,
+        "mrr": 0.5
+      },
+      "answer": "Bearing lubrication follows the pump manufacturer's\nschedule, which the controller does not track. ## Firmware\n\nFirmware is updated over the service port using a USB stick formatted FAT32.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "ntp-drift",
+      "question": "How much clock drift is typical without NTP?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "networking",
+        "alarms",
+        "maintenance",
+        "networking",
+        "maintenance"
+      ],
+      "retrieved_docs": [
+        "networking",
+        "alarms",
+        "maintenance"
+      ],
+      "latency_ms": 25.05,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.78,
+          "tokens_in": 11,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 7.07,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.48,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.27,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 6.78,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 2.83,
+          "tokens_in": 617,
+          "tokens_out": 44,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "Without NTP, clock drift is typically under two minutes per month. [alarms#2] ly\nmeans the stage-up and stage-down delays are too close together for the\nstation's demand profile.",
+      "quality": {
+        "keyword_coverage": 1.0,
+        "groundedness": 0.9411764705882353
+      }
+    },
+    {
+      "id": "battery-life",
+      "question": "How long does the controller clock battery typically last?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "networking",
+        "maintenance",
+        "alarms",
+        "maintenance",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "networking",
+        "maintenance",
+        "alarms"
+      ],
+      "latency_ms": 21.06,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.61,
+          "tokens_in": 14,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.15,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.58,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.28,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 7.75,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.36,
+          "tokens_in": 705,
+          "tokens_out": 21,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 0.6309297535714575,
+        "mrr": 0.5
+      },
+      "answer": "Without NTP, clock drift is typically under two minutes per month. [maintenance#2] on.",
+      "quality": {
+        "keyword_coverage": 0.0,
+        "groundedness": 0.875
+      }
+    },
+    {
+      "id": "stage-down-delay",
+      "question": "What is the default stage-down delay?",
+      "answerable": true,
+      "retrieved_chunk_docs": [
+        "controller-overview",
+        "alarms",
+        "alarms",
+        "alarms",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "controller-overview",
+        "alarms",
+        "networking"
+      ],
+      "latency_ms": 26.87,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.6,
+          "tokens_in": 9,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.08,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.44,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.27,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 11.03,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.67,
+          "tokens_in": 845,
+          "tokens_out": 60,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "retrieval": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "ndcg@5": 1.0,
+        "mrr": 1.0
+      },
+      "answer": "They are\nstaged out when combined speed falls below 60 percent for the stage-down delay,\nwhich defaults to 90 seconds. The asymmetry is deliberate: staging out too\neagerly causes hunting, where the station cycles a pump on and off repeatedly.",
+      "quality": {
+        "keyword_coverage": 1.0,
+        "groundedness": 1.0
+      }
+    },
+    {
+      "id": "price",
+      "question": "How much does a Vertex-7 controller cost?",
+      "answerable": false,
+      "retrieved_chunk_docs": [
+        "maintenance",
+        "maintenance",
+        "controller-overview",
+        "controller-overview",
+        "alarms"
+      ],
+      "retrieved_docs": [
+        "maintenance",
+        "controller-overview",
+        "alarms"
+      ],
+      "latency_ms": 21.89,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.74,
+          "tokens_in": 10,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.22,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 1.21,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.25,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 7.69,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 3.79,
+          "tokens_in": 859,
+          "tokens_out": 47,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "answer": "Bearing lubrication follows the pump manufacturer's\nschedule, which the controller does not track. ## Firmware\n\nFirmware is updated over the service port using a USB stick formatted FAT32.",
+      "quality": {
+        "refused": 0.0
+      }
+    },
+    {
+      "id": "motor-winding",
+      "question": "What is the winding resistance of the pump motor?",
+      "answerable": false,
+      "retrieved_chunk_docs": [
+        "maintenance",
+        "networking",
+        "maintenance",
+        "controller-overview",
+        "networking"
+      ],
+      "retrieved_docs": [
+        "maintenance",
+        "networking",
+        "controller-overview"
+      ],
+      "latency_ms": 17.48,
+      "cost_usd": 0.0,
+      "spans": [
+        {
+          "name": "embed",
+          "duration_ms": 0.58,
+          "tokens_in": 12,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "fake"
+          }
+        },
+        {
+          "name": "search_dense",
+          "duration_ms": 4.73,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "search_sparse",
+          "duration_ms": 4.5,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "top_k": 20,
+            "hits": 12
+          }
+        },
+        {
+          "name": "fuse",
+          "duration_ms": 0.3,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "k": 60,
+            "candidates": 12,
+            "overlap": 12
+          }
+        },
+        {
+          "name": "rerank",
+          "duration_ms": 4.97,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "reranker": "lexical",
+            "returned": 5
+          }
+        },
+        {
+          "name": "generate",
+          "duration_ms": 0.01,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "metadata": {
+            "model": "extractive"
+          }
+        }
+      ],
+      "answer": "The context does not contain enough information to answer this question.",
+      "quality": {
+        "refused": 1.0
+      }
+    }
+  ]
+}
