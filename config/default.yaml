@@ -1,4 +1,4 @@
-# Defaults for the RAG service.
+# Defaults for EnterpriseRAG.
 # Every key here is overridable by an RAG_<KEY> environment variable,
 # so this file holds choices, not secrets. Keys live in .env.
 

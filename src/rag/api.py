@@ -27,7 +27,7 @@ from .config import load_settings
 from .pipeline import RagPipeline
 
 app = FastAPI(
-    title="RAG service",
+    title="EnterpriseRAG",
     description="Hybrid retrieval with reranking, tracing and a measurable eval suite.",
     version="0.1.0",
 )

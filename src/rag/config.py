@@ -1,5 +1,5 @@
 """
-Configuration for the RAG service.
+Configuration for EnterpriseRAG.
 
 One switch decides where embeddings and generation happen: `provider`.
 It can be split: `embed_provider` and `chat_provider` override it separately,
